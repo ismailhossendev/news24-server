@@ -1,11 +1,41 @@
 const express = require('express')
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors')
 const app = express()
 const port = 5000
 app.use(cors())
+app.use(express.json())
 
 const news = require('./news.json')
 const categories = require('./categories.json')
+
+//user - dbuser1
+// pass - xJQUOJMGocXgKXso
+
+const afterNews = []
+
+
+const uri = "mongodb+srv://dbuser1:xJQUOJMGocXgKXso@cluster0.odx3u2z.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+  const collection = client.db("news24").collection("news")
+
+async function run(){
+  try{
+
+  }
+  finally{
+    
+  }
+}
+  
+app.post('/news',(req,res)=>{
+  let i = 0
+  const newNews = req.body;
+  newNews.id = afterNews.length +1;
+  afterNews.push(newNews)
+  console.log(afterNews);
+  res.send(newNews)
+})
 
 
 app.get('/', (req, res) => {
